@@ -1,14 +1,24 @@
 package features;
 
-import cucumber.api.PendingException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class SendMessage {
+	WebDriver driver = null;
 	@Given("^I on message website$")
 	public void i_on_message_website() throws Throwable {
-	    System.out.println(1);
+		//if you didn't update the Path system variable to add the full directory path to the executable as above mentioned then doing this directly through code
+		System.setProperty("webdriver.gecko.driver", "C:/Users/isantos/geckodriver-v0.14.0-win64/geckodriver.exe");
+
+		
+		driver = new FirefoxDriver();
+		driver.navigate().to("https://www.google.com.br/");
+	    
 	}
 
 	@When("^I write a message$")
