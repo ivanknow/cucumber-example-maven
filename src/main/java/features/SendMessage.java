@@ -1,12 +1,15 @@
 package features;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import junit.framework.Assert;
 
 public class SendMessage {
 	WebDriver driver = null;
@@ -23,16 +26,19 @@ public class SendMessage {
 
 	@When("^I write a message$")
 	public void i_write_a_message() throws Throwable {
-		System.out.println(2);
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		driver.findElement(By.id("lst-ib")).sendKeys("helo ivan");
 	}
 
 	@When("^I click on the submit button$")
 	public void i_click_on_the_submit_button() throws Throwable {
-		System.out.println(3);
+		
+		//driver.findElement(By.name("btnK")).click();
 	}
 
 	@Then("^the confirmation message is displayed$")
 	public void the_confirmation_message_is_displayed() throws Throwable {
-		System.out.println(4);
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		//Assert.assertEquals("salvo", driver.findElement(By.className("ng-binding")).getText());
 	}
 }
